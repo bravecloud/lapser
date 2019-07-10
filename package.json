@@ -1,0 +1,23 @@
+{
+  "name": "lapser",
+  "version": "0.0.1",
+  "description": "Performance timing for tracking latency in function calls.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "lint": "./node_modules/eslint/bin/eslint.js ./"
+  },
+  "keywords": [
+    "performance",
+    "timer",
+    "timing",
+    "latency"
+  ],
+  "author": "bravecloud",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "6.0.1",
+    "mocha": "^6.1.4"
+  }
+}
