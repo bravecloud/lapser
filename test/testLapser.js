@@ -77,6 +77,7 @@ describe('Lapser', function () {
   it('getSummary', function (done) {
     let lapser = Lapse("Test");
     let summary = lapser.getSummary();
+
     assert.equal(summary.name, "Test");
     assert(isNaN(summary.start));
     assert(isNaN(summary.end));
@@ -94,6 +95,7 @@ describe('Lapser', function () {
       assert(!isNaN(summary.start));
       assert(summary.lapses.length === 2);
       assert(summary.lapses[1].ts === summary.end);
+      assert(summary.lapses.reduce((acc, curr) => { return acc.elapsed + curr.elapsed; }) === summary.elapsed);
       done();
     }).catch(e => {
       done(e);
