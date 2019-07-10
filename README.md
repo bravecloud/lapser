@@ -198,7 +198,7 @@ let mfaCheck = await mfa(customer);  //takes 714ms
 lapser.lapse("mfa");
 
 let offers = await getOffers(customer); //takes 429ms
-lapser.lapse("offers);
+lapser.lapse("offers");
 
 //use getMax to figure what call is the bottleneck
 console.log(lapser.getMax());
@@ -229,7 +229,7 @@ let mfaCheck = await mfa(customer);  //takes 714ms
 lapser.lapse("mfa");
 
 let offers = await getOffers(customer); //takes 429ms
-lapser.lapse("offers);
+lapser.lapse("offers");
 
 console.log(lapser.getSummary());
 ```
@@ -277,7 +277,7 @@ let mfaCheck = await mfa(customer);  //takes 714ms
 lapser.lapse("mfa");
 
 let offers = await getOffers(customer); //takes 429ms
-lapser.lapse("offers);
+lapser.lapse("offers");
 
 console.log(lapser.getSummary());
 ```
