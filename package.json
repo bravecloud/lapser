@@ -1,10 +1,12 @@
 {
   "name": "lapser",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Performance timing for tracking latency in function calls.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
+    "cover": "nyc ./node_modules/mocha/bin/mocha",
+    "cover-report": "nyc -r html ./node_modules/mocha/bin/mocha",
     "lint": "./node_modules/eslint/bin/eslint.js ./"
   },
   "keywords": [
@@ -22,7 +24,8 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "6.0.1",
+    "lodash": ">=4.17.13",
     "mocha": "^6.1.4",
-    "lodash": ">=4.17.13"
+    "nyc": "^14.1.1"
   }
 }

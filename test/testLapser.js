@@ -74,6 +74,21 @@ describe('Lapser', function () {
     max = lapser.getMax();
     assert.equal(max.ts, lapser.getStart());
   });
+  it('getMax with one lapse', function (done) {
+    let lapser = Lapse("Test", true);
+    pause(200).then(_ => {
+      lapser.lapse("t1");
+      assert(lapser.getMax().key === "t1");
+      assert.deepEqual(lapser.getLapses()[0], lapser.getMax());
+      //assert immutability
+      let max = lapser.getMax();
+      max.elapsed = -1;
+      assert(max.elapsed !== -1);
+      done();
+    }).catch(e => {
+      done(e);
+    });
+  });
   it('getSummary', function (done) {
     let lapser = Lapse("Test");
     let summary = lapser.getSummary();
@@ -100,6 +115,10 @@ describe('Lapser', function () {
     }).catch(e => {
       done(e);
     });
+  });
+  it('toString none', function () {
+    let lapser = Lapse("TestToString", true);
+    assert(lapser.toString().indexOf("TestToString") !== -1 && lapser.toString().indexOf("0ms") !== -1);
   });
   it('toString single', function (done) {
     let lapser = Lapse("TestToString", true);

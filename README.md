@@ -182,6 +182,18 @@ The `getName()` function returns the name of the lapser instance.
 
 The `getStart()` function returns the start of the lapser instance as a unix timestamp.
 
+## getLapses()
+  * Returns: `<object>` an array of lapse points
+
+The `getLapses()` function returns all the tracked lapse points of the lapser instance.  The following is an example lapse point object:
+```javascript
+{
+  "key": "queryCustomerDB",
+  "ts": 1562882857208,
+  "elapsed": 209
+}
+```
+
 ## getMax()
   * Returns: `<object>` the longest duration of the lapse tracker.
 
