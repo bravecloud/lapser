@@ -1,6 +1,6 @@
 {
   "name": "lapser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Performance timing for tracking latency in function calls.",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
     "timing",
     "latency"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/bravecloud/lapser.git"
+  },
   "author": "bravecloud",
   "license": "MIT",
   "dependencies": {},
