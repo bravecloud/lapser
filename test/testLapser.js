@@ -163,4 +163,28 @@ describe('Lapser', function () {
       done(e);
     });
   });
+  it('json', function (done) {
+    let lapser = Lapse("Test Multi", true);
+    pause(200).then(_ => {
+      lapser.lapse("t1");
+      return pause(25);
+    }).then(_ => {
+      lapser.lapse("t2");
+      return pause(25);
+    }).then(_ => {
+      lapser.lapse("t3");
+      return pause(25);
+    }).then(_ => {
+      lapser.lapse("t4")
+      return pause(25);
+    }).then(_ => {
+      lapser.lapse("t5");
+      let json = lapser.json();
+      assert(json.name === lapser.getName());
+      assert(json.elapsed === lapser.elapsed());
+      done();
+    }).catch(e => {
+      done(e);
+    });
+  });
 });

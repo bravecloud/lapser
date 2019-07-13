@@ -295,7 +295,7 @@ lapser.lapse("mfa");
 let offers = await getOffers(customer); //takes 429ms
 lapser.lapse("offers");
 
-console.log(lapser.getSummary());
+console.log(lapser.toString());
 ```
 Output:
 ```
@@ -303,4 +303,33 @@ Customer Login 1379ms
   - login 236ms
   - mfa 714ms
   - offers 429ms
+```
+
+## json()
+  * Returns: <object> a simplified representation of the lapser object.
+
+The `json()` function returns a json object with the name and the elapsed duration of the lapser.  This can be used as an alternative to logging the lapser using the toString() function in situations where performance tracking output is to be parsed 
+(e.g. storing lapser tracking in a NoSQL database or time series database.)
+
+```javascript
+const Lapser = require("lapser");
+let lapser = Lapser("Customer Login", true);
+
+let customer = await login(credentials); //takes 236ms
+lapser.lapse("login");
+
+let mfaCheck = await mfa(customer);  //takes 714ms
+lapser.lapse("mfa");
+
+let offers = await getOffers(customer); //takes 429ms
+lapser.lapse("offers");
+
+console.log(lapser.json());
+```
+Output:
+```
+{
+  name: 'Customer Login',
+  elapsed: 1379
+}
 ```
