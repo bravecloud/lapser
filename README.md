@@ -279,8 +279,7 @@ Output:
 ## toString()
   * Returns: <string> a formatted string representation of the tracker
 
-The `getString()` function returns a string representation of the tracker that shows the entire duration tracked as well as
-the individual time lapses that make up the entire duration.
+The `toString()` function returns a string representation of the tracker that shows the entire duration tracked as well as the individual time lapses that make up the entire duration.
 
 ```javascript
 const Lapser = require("lapser");
