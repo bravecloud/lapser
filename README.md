@@ -332,3 +332,27 @@ Output:
   elapsed: 1379
 }
 ```
+
+## log()
+
+The `log()` function prints the high level elapsed duration of a lapser instance to Standard Out using console.log. This saves having to manually type console.log(lapser.toString()) for ad-hoc debugging.
+
+```javascript
+const Lapser = require("lapser");
+let lapser = Lapser("Customer Login", true);
+
+let customer = await login(credentials); //takes 236ms
+lapser.lapse("login");
+
+let mfaCheck = await mfa(customer);  //takes 714ms
+lapser.lapse("mfa");
+
+let offers = await getOffers(customer); //takes 429ms
+lapser.lapse("offers");
+
+lapser.log();
+```
+Output:
+```
+[Lapser] [Fri, 19 Jul 2019 00:22:53 GMT] Customer Login 1379ms
+```

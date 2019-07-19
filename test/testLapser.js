@@ -124,7 +124,6 @@ describe('Lapser', function () {
     let lapser = Lapse("TestToString", true);
     pause(200).then(_ => {
       lapser.lapse();
-      // console.log(lapser.toString());
       done();
     }).catch(e => {
       done(e);
@@ -182,6 +181,21 @@ describe('Lapser', function () {
       let json = lapser.json();
       assert(json.name === lapser.getName());
       assert(json.elapsed === lapser.elapsed());
+      done();
+    }).catch(e => {
+      done(e);
+    });
+  });
+  it('log', function (done) {
+    let lapser = Lapse("TestToString", true);
+    pause(200).then(_ => {
+      lapser.lapse();
+      let origLog = console.log;
+      console.log = (arguments) => {
+        assert(arguments.indexOf("TestToString") !== -1);
+      };
+      lapser.log();
+      console.log = origLog;
       done();
     }).catch(e => {
       done(e);
