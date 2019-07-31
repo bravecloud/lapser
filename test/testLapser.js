@@ -1,4 +1,4 @@
-const Lapse = require("../index");
+const Lapser = require("../index");
 
 const pause = (ms) => {
   return new Promise((r, e) => {
@@ -11,26 +11,26 @@ const pause = (ms) => {
 const assert = require('assert');
 describe('Lapser', function () {
   it('Instantiation', function () {
-    let lapser = Lapse();
+    let lapser = Lapser();
     assert.equal("Lapser-1", lapser.getName());
   });
   it('lapse - autostart', function () {
-    let lapser = Lapse("Test", true);
+    let lapser = Lapser("Test", true);
     assert.notEqual(lapser.getStart(), NaN);
   });
   it('lapse - default non-autostart ', function () {
-    let lapser = Lapse("Test");
+    let lapser = Lapser("Test");
     assert(isNaN(lapser.getStart()))
   });
   it('lapse - default autostart via config', function () {
-    Lapse.setAutostart(true);
-    let lapser = Lapse("Test");
+    Lapser.setAutostart(true);
+    let lapser = Lapser("Test");
     assert(!isNaN(lapser.getStart()));
     //Restore default
-    Lapse.setAutostart(false);
+    Lapser.setAutostart(false);
   });
   it('lapse - basic total with 1 lapse, inline chain', function (done) {
-    let lapser = Lapse("Test", true);
+    let lapser = Lapser("Test", true);
     pause(200).then(_ => {
       //Some latency is expected with code execution, so elapsed time won't match exactly with pauses.
       //Check accuracy within a reasonable range.
@@ -41,7 +41,7 @@ describe('Lapser', function () {
     });
   });
   it('lapse - basic total with multiple lapses and max', function (done) {
-    let lapser = Lapse("Test", true);
+    let lapser = Lapser("Test", true);
     pause(200).then(_ => {
       lapser.lapse("t1"); 
       return pause(300);
@@ -64,7 +64,7 @@ describe('Lapser', function () {
     });
   });
   it('getMax with no lapses', function () {
-    let lapser = Lapse("Test");
+    let lapser = Lapser("Test");
     let max = lapser.getMax();
     assert.notEqual(max, undefined);
     assert.equal(max.key, "Test");
@@ -75,7 +75,7 @@ describe('Lapser', function () {
     assert.equal(max.ts, lapser.getStart());
   });
   it('getMax with one lapse', function (done) {
-    let lapser = Lapse("Test", true);
+    let lapser = Lapser("Test", true);
     pause(200).then(_ => {
       lapser.lapse("t1");
       assert(lapser.getMax().key === "t1");
@@ -90,7 +90,7 @@ describe('Lapser', function () {
     });
   });
   it('getSummary', function (done) {
-    let lapser = Lapse("Test");
+    let lapser = Lapser("Test");
     let summary = lapser.getSummary();
 
     assert.equal(summary.name, "Test");
@@ -117,11 +117,11 @@ describe('Lapser', function () {
     });
   });
   it('toString none', function () {
-    let lapser = Lapse("TestToString", true);
+    let lapser = Lapser("TestToString", true);
     assert(lapser.toString().indexOf("TestToString") !== -1 && lapser.toString().indexOf("0ms") !== -1);
   });
   it('toString single', function (done) {
-    let lapser = Lapse("TestToString", true);
+    let lapser = Lapser("TestToString", true);
     pause(200).then(_ => {
       lapser.lapse();
       done();
@@ -130,7 +130,7 @@ describe('Lapser', function () {
     });
   });
   it('toString multiple lapses', function (done) {
-    let lapser = Lapse("Test Multi", true);
+    let lapser = Lapser("Test Multi", true);
     pause(200).then(_ => {
       lapser.lapse("t1");
       return pause(25);
@@ -163,7 +163,7 @@ describe('Lapser', function () {
     });
   });
   it('json', function (done) {
-    let lapser = Lapse("Test Multi", true);
+    let lapser = Lapser("Test Multi", true);
     pause(200).then(_ => {
       lapser.lapse("t1");
       return pause(25);
@@ -181,13 +181,14 @@ describe('Lapser', function () {
       let json = lapser.json();
       assert(json.name === lapser.getName());
       assert(json.elapsed === lapser.elapsed());
+      assert(json.ts === lapser.getStart());
       done();
     }).catch(e => {
       done(e);
     });
   });
   it('log', function (done) {
-    let lapser = Lapse("TestToString", true);
+    let lapser = Lapser("TestToString", true);
     pause(200).then(_ => {
       lapser.lapse();
       let origLog = console.log;

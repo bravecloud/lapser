@@ -329,7 +329,8 @@ Output:
 ```
 {
   name: 'Customer Login',
-  elapsed: 1379
+  elapsed: 1379,
+  ts: 1562719037556
 }
 ```
 
