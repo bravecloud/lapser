@@ -1,0 +1,6 @@
+.eslintignore
+.eslintrc
+test
+.nyc_output
+coverage
+.travis.yml
