@@ -64,7 +64,7 @@ console.log(lapser.lapse().toString());
 
 ### Multi-call performance tracking for identifying bottlenecks:
 ```javascript
-const Lapser = require("./index.js");
+const Lapser = require("lapser");
 
 //Detailed performance tracking
 const slowAlgorithm = (params) => {
@@ -99,7 +99,7 @@ Slow Algorithm 16391ms
 
 #### Async/Await alternative
 ```javascript
-const Lapser = require("./index.js");
+const Lapser = require("lapser");
 
 //Detailed performance tracking
 const slowAlgorithm = (params) => {
@@ -123,6 +123,8 @@ const slowAlgorithm = (params) => {
   console.log(lapser.toString());
 };
 ```
+**For a more compact async/await style, see `withLapse` function under the API section**
+
 ## <a name="api"></a>API
 
 ## Lapser([name][,autoStart])
@@ -169,6 +171,27 @@ The `lapse()` function marks the end of a timing cycle.
 const Lapser = require("lapser");
 let lapser = Lapser("Login", true);
 
+```
+
+## withLapse(key, evaluatedArg) [introduced in 0.1.22]
+  * `key <string>` A mandatory identifier for the timing cycle.
+  * Returns: `evaluatedArg` the evaluated target (e.g. executed function)
+
+The `withLapse()` function is used for compact async formatting
+
+```javascript
+const Lapser = require("lapser");
+let lapser = Lapser("Slow Algorithm", true);
+
+// the evaluated target parameter is passed in and returned as is to facilitate a concise lapse marking.
+let dataset  = lapser.withLapse("Load dataset", await loadDataset(params));
+let reducedData = lapser.withLapse("Reduce dataset", await reduce(dataset));
+let results = lapser.withLapse("Analysation", await analyse(reducedData);
+
+lapser = lapser.withLapse("Save results", await save(results));
+
+//Output performance tracking
+console.log(lapser.toString());
 ```
 
 ## elapsed()
