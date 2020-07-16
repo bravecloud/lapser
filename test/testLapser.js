@@ -1,9 +1,9 @@
 const Lapser = require("../index");
 
-const pause = (ms) => {
+const pause = (ms, v) => {
   return new Promise((r, e) => {
     setTimeout(() => {
-      r();
+      r(v);
     }, ms);
   });
 };
@@ -62,6 +62,26 @@ describe('Lapser', function () {
     }).catch(e => {
       done(e);
     });
+  });
+  it("withLapse (compact async)", async function () {
+    let lapser = Lapser("Test", true);
+
+    // make sure the evaluatedArg passes through return value
+    let result = lapser.withLapse("t1", await pause(200, 1));
+    assert.equal(result, 1);
+
+    result = lapser.withLapse("t2", await pause(300, 2));
+    assert.equal(result, 2);
+
+    result = lapser.withLapse("t3", await pause(125, 3));
+    assert.equal(result, 3);
+
+    result = lapser.withLapse("t4", await pause(150, 4));
+    assert.equal(result, 4)
+
+    result = lapser.withLapse("t5");
+    assert((lapser.elapsed() - 900) <= 50);
+    assert.equal(lapser.getMax().key, "t2");
   });
   it('getMax with no lapses', function () {
     let lapser = Lapser("Test");
