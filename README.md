@@ -173,8 +173,10 @@ let lapser = Lapser("Login", true);
 
 ```
 
-## withLapse(key, evaluatedArg) [introduced in 0.1.22]
+## withLapse(key, evaluatedArg, [verbose]) [introduced in 0.1.22]
   * `key <string>` A mandatory identifier for the timing cycle.
+  * `evaluatedArg <any>` the evaluated target (e.g. executed function)
+  * `verbose <boolean>` when true, the elapsed time will be printed to STDOUT [introduced in 0.1.23]
   * Returns: `evaluatedArg` the evaluated target (e.g. executed function)
 
 The `withLapse()` function is used for compact async formatting

@@ -83,6 +83,24 @@ describe('Lapser', function () {
     assert((lapser.elapsed() - 900) <= 50);
     assert.equal(lapser.getMax().key, "t2");
   });
+  it("withLapse (verbose)", async function () {
+    let lapser = Lapser("Test", true);
+
+    let origLog = console.log;
+    let buffer = [];
+    console.log = (arguments) => {
+      buffer.push(arguments);
+    };
+
+    let result = lapser.withLapse("t1", await pause(200, 1), true);
+    assert.equal(result, 1);
+    assert(buffer[0].search(/t1\s2\d\dms/) !== -1);
+
+    result = lapser.withLapse("t2", await pause(350, 2), true);
+    assert(buffer[1].search(/t2\s3\d\dms/) !== -1);
+
+    console.log = origLog;
+  });
   it('getMax with no lapses', function () {
     let lapser = Lapser("Test");
     let max = lapser.getMax();

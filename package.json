@@ -1,6 +1,6 @@
 {
   "name": "lapser",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Performance timing for tracking latency in function calls.",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "timing",
     "latency",
     "bottleneck",
-    "function execution time"
+    "function execution time",
+    "debug performance"
   ],
   "repository": {
     "type": "git",
