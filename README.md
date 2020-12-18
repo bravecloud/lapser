@@ -14,7 +14,7 @@ Lapser is a module for assessing performance of code execution (e.g. expensive f
 
 ## <a name="installation-and-usage"></a>Installation and Usage
 
-Prerequisites: [Node.js](https://nodejs.org/) `>=6.0.0`, npm version 3+.
+Prerequisites: [Node.js](https://nodejs.org/) `>=10+`, [npm](https://docs.npmjs.com/about-npm) `6+`.
 
 You can install Lapser using npm:
 
