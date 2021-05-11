@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.26 - 2021-05-10]
+
+- security updates for package-lock.json
+
 ## [0.1.22 - 2020-07-17]
 
 ### Added

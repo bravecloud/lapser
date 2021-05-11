@@ -1,6 +1,6 @@
 {
   "name": "lapser",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "Performance timing for tracking latency in function calls.",
   "main": "index.js",
   "scripts": {
