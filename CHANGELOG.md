@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0 - 2022-04-10]
+
+- migrating from travis ci to github actions
+- updating dependencies
+
 ## [0.1.26 - 2021-05-10]
 
 - security updates for package-lock.json
