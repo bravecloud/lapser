@@ -1,5 +1,5 @@
 [![npm version](https://badge.fury.io/js/lapser.svg)](https://badge.fury.io/js/lapser)
-![build status](https://github.com/bravecloud/lapser/actions/workflows/build.yml/badge.svg?branch=master)
+[![build status](https://github.com/bravecloud/lapser/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/bravecloud/lapser/actions/workflows/build.yml)
 [![Coverage Status](https://coveralls.io/repos/github/bravecloud/lapser/badge.svg?branch=master)](https://coveralls.io/github/bravecloud/lapser?branch=master)
 
 # Lapser
